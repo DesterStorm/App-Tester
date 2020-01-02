@@ -16,14 +16,15 @@
         <nav class="navbar">
           <div class="container">
             <div class="navbar-brand">
-              <%= link_to 'App-Tester Home', root_path, class: "navbar-item" %> <%= link_to "Create New Job Post", new_job_post_path, class: "navbar-item" %>
+              <%= link_to 'App-Tester Home', root_path, class: "navbar-item" %>
+              <span class="navbar-burger burger" data-target="navMenu">
               <span></span>
               <span></span>
               <span></span>
             </span>
             </div>
-            <div id="navbarMenuHeroA" class="navbar-menu">
-              <div class="navbar-brand">
+            <div id="navMenu" class="navbar-menu">
+              <div class="navbar-end">
 <!--                </a>-->
 <!--                <a class="navbar-item">-->
 <!--                  TODO: Add Take Test functionality-->
@@ -32,11 +33,25 @@
 <!--                <a class="navbar-item">-->
 <!--                  TODO: Add About Us page-->
                   <%#= link_to 'About Us', about_us_path, class: "navbar-item" %>
+<!--                </a>-->
+                <a class="navbar-item">
+                  <%= link_to "Create New Job Post", new_job_post_path, class: "navbar-item" %>
                 </a>
               </div>
             </div>
           </div>
         </nav>
+        <script type="text/javascript">
+            (function() {
+                var burger = document.querySelector('.burger');
+                var nav = document.querySelector('#'+burger.dataset.target);
+
+                burger.addEventListener('click', function () {
+                    burger.classList.toggle('is-active');
+                    nav.classList.toggle('is-active');
+                });
+                })();
+        </script>
       </div>
 
       <!-- Hero content: will be in the middle -->
@@ -52,14 +67,7 @@
       <div class="hero-foot">
         <nav class="tabs">
           <div class="container">
-            <ul>
-              <li class="is-active"><a>Overview</a></li>
-              <li><a>Modifiers</a></li>
-              <li><a>Grid</a></li>
-              <li><a>Elements</a></li>
-              <li><a>Components</a></li>
-              <li><a>Layout</a></li>
-            </ul>
+
           </div>
         </nav>
       </div>
