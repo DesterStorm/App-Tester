@@ -1,2 +1,3 @@
 class JobPost < ApplicationRecord
+
 end

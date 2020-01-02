@@ -1,0 +1,32 @@
+<% content_for :page_title, @job_post.title %>
+
+<section class="section">
+  <div class="container">
+    <nav class="level">
+      <!-- Left Side -->
+      <div class="level-left">
+        <h1 class="title">
+          <%= @job_post.title %>
+        </h1>
+      </div>
+
+
+        <!-- Right Side -->
+        <div class="level-right">
+          <p class="level-item">
+            <%= link_to "Edit", edit_job_post_path(@job_post), class: "button" %>
+          </p>
+        <p class="level-item">
+          <!-- TODO: add rails functional -->
+          <a class="button is-danger">Delete</a>
+        </p>
+      </div>
+    </nav>
+    <hr />
+
+
+    <div class="content">
+      <%= @job_post.content %>
+    </div>
+  </div>
+</section>
