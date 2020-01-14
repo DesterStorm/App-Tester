@@ -35,6 +35,8 @@ gem 'bulma-rails', '~> 0.8.0'
 gem 'simple_form', '~> 5.0', '>= 5.0.1'
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.7', '>= 4.7.1'
+# One stop solution for all survey related requirements! Its tad easy!
+gem 'rapidfire', '~> 4.0'
 
 
 group :development, :test do

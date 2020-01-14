@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_03_001134) do
+ActiveRecord::Schema.define(version: 2020_01_14_202850) do
 
   create_table "clients", force: :cascade do |t|
     t.integer "EIN"
@@ -28,6 +28,38 @@ ActiveRecord::Schema.define(version: 2020_01_03_001134) do
     t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
   end
 
+  create_table "exam_answers", force: :cascade do |t|
+    t.string "letter"
+    t.string "answer"
+    t.boolean "correct"
+    t.integer "exam_question_id"
+    t.integer "exam_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exam_id"], name: "index_exam_answers_on_exam_id"
+    t.index ["exam_question_id"], name: "index_exam_answers_on_exam_question_id"
+  end
+
+  create_table "exam_options", force: :cascade do |t|
+    t.string "letter"
+    t.string "answer"
+    t.integer "exam_question_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exam_question_id"], name: "index_exam_options_on_exam_question_id"
+  end
+
+  create_table "exam_questions", force: :cascade do |t|
+    t.boolean "active"
+    t.integer "order"
+    t.string "level"
+    t.string "question"
+    t.string "letter"
+    t.string "answer"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "exams", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.integer "client_id", null: false
@@ -43,6 +75,49 @@ ActiveRecord::Schema.define(version: 2020_01_03_001134) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rapidfire_answers", force: :cascade do |t|
+    t.integer "attempt_id"
+    t.integer "question_id"
+    t.text "answer_text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["attempt_id"], name: "index_rapidfire_answers_on_attempt_id"
+    t.index ["question_id"], name: "index_rapidfire_answers_on_question_id"
+  end
+
+  create_table "rapidfire_attempts", force: :cascade do |t|
+    t.integer "survey_id"
+    t.string "user_type"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["survey_id"], name: "index_rapidfire_attempts_on_survey_id"
+    t.index ["user_id", "user_type"], name: "index_rapidfire_attempts_on_user_id_and_user_type"
+    t.index ["user_type", "user_id"], name: "index_rapidfire_attempts_on_user_type_and_user_id"
+  end
+
+  create_table "rapidfire_questions", force: :cascade do |t|
+    t.integer "survey_id"
+    t.string "type"
+    t.string "question_text"
+    t.string "default_text"
+    t.string "placeholder"
+    t.integer "position"
+    t.text "answer_options"
+    t.text "validation_rules"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["survey_id"], name: "index_rapidfire_questions_on_survey_id"
+  end
+
+  create_table "rapidfire_surveys", force: :cascade do |t|
+    t.string "name"
+    t.text "introduction"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "after_survey_content"
   end
 
   create_table "users", force: :cascade do |t|
