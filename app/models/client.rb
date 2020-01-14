@@ -3,8 +3,8 @@ class Client < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :exams
   has_many :job_posts
+  has_many :exams
   has_many :users, through: :exams
 
 end

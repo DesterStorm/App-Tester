@@ -35,7 +35,7 @@
                   <%#= link_to 'About Us', about_us_path, class: "navbar-item" %>
 <!--                </a>-->
                 <a class="navbar-item">
-                  <%= link_to "Create New Job Post", new_job_post_path, class: "navbar-item" %>
+                  <%= link_to "Edit Account Info", edit_user_registration_path, class: "navbar-item" %>
                 </a>
               </div>
             </div>
@@ -63,7 +63,34 @@
         </div>
       </div>
 
+      <!-- Hero footer: will stick at the bottom -->
+      <div class="hero-foot">
+        <nav class="tabs is-boxed is-fullwidth">
+          <div class="container">
+            <ul>
+              <li><a><%= link_to 'App-Tester Home', root_path, class: "navbar-item" %></a></li>
+              <li><a><%= link_to "Create Job Post", new_job_post_path, class: "navbar-item" %></a></li>
+              <li><a><% if current_user  %>
+                  <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+                <% else %>
+                  <%= link_to 'Sign in', new_user_session_path %>                  </a></li>
+              <li><a><%= link_to 'Sign Up', new_user_registration_path %>
+                <% end %></a></li>
+              <li><a></a></li>
+              <li><a></a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
     </section>
+    <%# if current_user  %>
+    <%#= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+    <%# else %>
+    <%#= link_to 'Sign in', new_user_session_path %>
+    <%#= link_to 'Sign Up', new_user_registration_path %>
+    <%# end %>
+
+
     <%= render 'layouts/alerts' %>
     <%= yield %>
   </body>
