@@ -10,7 +10,6 @@ class JobPostsController < ApplicationController
 
   def create
     @job_post = JobPost.new(job_post_params)
-
     if @job_post.save!
       redirect_to @job_post
     else

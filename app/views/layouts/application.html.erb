@@ -2,8 +2,7 @@
 <html>
   <head>
     <title>AppTester</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -25,17 +24,27 @@
             </div>
             <div id="navMenu" class="navbar-menu">
               <div class="navbar-end">
-<!--                </a>-->
-<!--                <a class="navbar-item">-->
+                <a class="navbar-item">
 <!--                  TODO: Add Take Test functionality-->
-                  <%#= link_to 'Take Test', new_exam_path, class: "navbar-item" %>
-<!--                </a>-->
+                  <%= link_to 'Invite Employee To Take Test', new_user_invitation_path, class: "navbar-item" %>
+                </a>
 <!--                <a class="navbar-item">-->
 <!--                  TODO: Add About Us page-->
                   <%#= link_to 'About Us', about_us_path, class: "navbar-item" %>
 <!--                </a>-->
                 <a class="navbar-item">
                   <%= link_to "Edit Account Info", edit_user_registration_path, class: "navbar-item" %>
+                </a>
+                <% if current_user  %>
+                <a class="navbar-item">
+                      <%= link_to 'Employee Sign out', destroy_user_session_path, method: :delete, class: "navbar-item" %>
+                  <% else %>
+                    <a class="navbar-item">
+                      <%= link_to 'Employee Sign in', new_user_session_path, class: "navbar-item" %>
+                    </a>
+                    <a class="navbar-item">
+                        <%= link_to 'Employee Sign Up', new_user_registration_path, class: "navbar-item" %><% end %>
+                  </a>
                 </a>
               </div>
             </div>
@@ -69,27 +78,35 @@
           <div class="container">
             <ul>
               <li><%= link_to 'App-Tester Home', root_path, class: "navbar-item" %></a></li>
+              <% if current_client  %>
               <li><%= link_to "Create Job Post", new_job_post_path, class: "navbar-item" %></li>
               <li></li>
+              <% end %>
               <li></li>
-              <li><% if current_user  %>
-                  <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-                  <% else %><%= link_to 'Sign in', new_user_session_path %>
+              <li><% if current_client  %>
+                    <%= link_to 'Sign out', destroy_client_session_path, method: :delete %>
+                  <% else %>
+                    <%= link_to 'Company Sign in', new_client_session_path %>
               </li>
-              <li><%= link_to 'Sign Up', new_user_registration_path %><% end %></li>
+                <li>
+                  <%= link_to 'Company Registration', new_client_registration_path %><% end %>
+                </li>
+
+
+<!--              <li>-->
+                <%# if current_user %>
+                  <%#= link_to 'Sign out applicant', destroy_user_session_path, method: :delete %>
+                <%# else %>
+                  <%#= link_to 'Sign in applicant', new_user_session_path %>
+<!--              </li>-->
+<!--              <li>-->
+                <%#= link_to 'Sign Up applicant', new_user_registration_path %><%# end %>
+<!--              </li>-->
             </ul>
           </div>
         </nav>
       </div>
     </section>
-    <%# if current_user  %>
-    <%#= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-    <%# else %>
-    <%#= link_to 'Sign in', new_user_session_path %>
-    <%#= link_to 'Sign Up', new_user_registration_path %>
-    <%# end %>
-
-
     <%= render 'layouts/alerts' %>
     <%= yield %>
   </body>

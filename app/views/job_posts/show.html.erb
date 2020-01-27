@@ -8,17 +8,25 @@
         <h1 class="title">
           <%= @job_post.title %>
         </h1>
+
       </div>
 
-
         <!-- Right Side -->
-        <div class="level-right">
-          <p class="level-item">
-            <%= link_to "Edit", edit_job_post_path(@job_post), class: "button" %>
-          </p>
+      <div class="level-right">
+        <% if current_user %>
+          <%= link_to "Take Test", @job_post.exams.sample, class: "button" %>
+          <% end %>
+          <% if current_client %>
+        <p class="level-item">
+          <%= link_to "Create Test", :controller => "exams", :action => "new", :id => @job_post, class: "button" %>
+        </p>
+        <p class="level-item">
+          <%= link_to "Edit", edit_job_post_path(@job_post), class: "button" %>
+        </p>
         <p class="level-item">
           <%= link_to "Delete", job_post_path(@job_post), method: :delete, data: {confirm: "Are you sure?"}, class: "button is-danger" %>
         </p>
+        <% end %>
       </div>
     </nav>
     <hr />

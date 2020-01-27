@@ -35,8 +35,19 @@ gem 'bulma-rails', '~> 0.8.0'
 gem 'simple_form', '~> 5.0', '>= 5.0.1'
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.7', '>= 4.7.1'
+# It adds support for send invitations by email (it requires to be authenticated) and accept the invitation by setting a password.
+gem 'devise_invitable', '~> 2.0', '>= 2.0.1'
 # One stop solution for all survey related requirements! Its tad easy!
 gem 'rapidfire', '~> 4.0'
+# A thin and fast web server
+gem 'thin'
+gem 'pry-rails'
+
+gem 'omniauth-facebook', '~> 5.0'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
+gem 'omniauth'
+gem 'activerecord-session_store'
 
 
 group :development, :test do
@@ -51,7 +62,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-
+  # Autoload dotenv in Rails.
+  gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
   # Provides a better error page for Rails and other Rack apps
   gem 'better_errors'
   # Guard is a command line tool to easily handle events on file system modifications.

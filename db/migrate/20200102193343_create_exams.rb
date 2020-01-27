@@ -2,8 +2,10 @@ class CreateExams < ActiveRecord::Migration[6.0]
   def change
     create_table :exams do |t|
       t.string    :name,       null: false, default: ""
-      t.integer   :client_id,  null: false, default: ""
-      t.integer   :user_id,    null: false, default: ""
+      t.string    :question,   null: false, default: ""
+      t.string    :option,     null: false, default: ""
+      t.string    :answer,     null: false, default: ""
+      t.integer   :job_post_id
 
       t.timestamps
     end

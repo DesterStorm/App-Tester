@@ -1,26 +1,48 @@
 class ExamAnswersController < ApplicationController
+  def index
+    @exam_answers = ExamAnswer.all.order("created_at DESC")
+  end
+
+  def new
+    @exam_answer = ExamAnswer.new
+    @exam = Exam.find(params[:id])
+  end
+
   def create
-    params["answers"].each do |key, value|
-      @exam_answer = ExamAnswer.create(exam_answer_params(value))
-    end
-
-    respond_to do |format|
-      if @exam_answer.save
-        delete_written
-        format.html { redirect_to exam_url(@exam), notice: 'Exam answers were successfully created.' }
-        format.json { render :show, status: :created, location: @exam_answer }
-      else
-        format.html { render :new }
-        format.json { render json: @exam_answer.errors, status: :unprocessable_entity }
-      end
+    @exam_answer = ExamAnswer.new(exam_answer_params)
+    if @exam_answer.save!
+      redirect_to @exam_answer
+    else
+      render 'new'
     end
   end
 
-  def delete_written
-    AssessmentAnswer.where(letter: nil).delete_all
+  def show
+    @exam_answer = ExamAnswer.find(params[:id])
   end
 
-  def exam_answer_params(answers)
-    answers.permit(:letter, :answer, :correct, :exam_question_id, :exam_id)
+  def update
+    @exam_answer = ExamAnswer.find(params[:id])
+    if @exam_answer.update_attributes(exam_answer_params)
+      redirect_to @exam_answer, notice: "Successfully updated exam_answer."
+    else
+      render 'edit'
+    end
+  end
+
+  def edit
+    @exam_answer = ExamAnswer.find(params[:id])
+  end
+
+  def destroy
+    @exam_answer = ExamAnswer.find(params[:id])
+    @exam_answer.destroy
+    redirect_to exam_answers_path, notice: "Successfully destroyed exam_answer."
+  end
+
+  private
+
+  def exam_answer_params
+    params.require(:exam_answer).permit(:exam_question_id, :exam_id)
   end
 end

@@ -4,23 +4,18 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
-    <%= f.input       :first_name,
+    <%= f.input       :company_name,
                       required: true,
                       autofocus: true %>
-    <%= f.input       :last_name,
+    <%= f.input       :EIN,
                       required: true,
                       autofocus: true %>
-    <%= f.date_field  :birthday,
-                      as: :date,
-                      start_year: Date.today.year - 100,
-                      end_year: Date.today.year - 15,
-                      order: [:day, :month, :year],
+    <%= f.input       :phone,
                       required: true,
                       autofocus: true %>
     <%= f.input       :address,
@@ -28,11 +23,9 @@
                       autofocus: true %>
     <%= f.input       :email,
                       required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "email" }%>
+                      autofocus: true %>
     <%= f.input       :password,
                       required: true,
-                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                       input_html: { autocomplete: "new-password" } %>
     <%= f.input       :password_confirmation,
                       required: true,

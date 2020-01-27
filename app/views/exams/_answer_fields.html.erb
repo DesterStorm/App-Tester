@@ -1,0 +1,20 @@
+<%= form_tag exam_answers_path(method: :post), :name => 'example-1', :id => 'wrapped' do %>
+  <fieldset>
+    <%= f.input :exam_option, input_html: {class: 'input'}, wrapper: false, label_html: {class: 'label'}  %>
+    <h3>If correct answer, check this box.</h3>
+    <%= f.check_box :correct, input_html: {:class => 'checkbox' }  %><br /><br />
+    <%= f.input :exam_option, input_html: {class: 'input'}, wrapper: false, label_html: {class: 'label'}  %>
+    <h3>If correct answer, check this box.</h3>
+    <%= f.check_box :correct, input_html: {:class => 'checkbox' }  %><br /><br />
+    <%= f.input :exam_option, input_html: {class: 'input'}, wrapper: false, label_html: {class: 'label'}  %>
+    <h3>If correct answer, check this box.</h3>
+    <%= f.check_box :correct, input_html: {:class => 'checkbox' }  %><br /><br />
+    <%= f.input :exam_option, input_html: {class: 'input'}, wrapper: false, label_html: {class: 'label'}  %>
+    <h3>If correct answer, check this box.</h3>
+    <%= f.check_box :correct, input_html: {:class => 'checkbox' }  %><br /><br />
+    <%= link_to "remove", '#', class: "remove_fields" %>
+  </fieldset>
+<% end %>
+
+
+
