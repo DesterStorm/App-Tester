@@ -41,7 +41,7 @@ gem 'devise_invitable', '~> 2.0', '>= 2.0.1'
 gem 'rapidfire', '~> 4.0'
 # A thin and fast web server
 gem 'thin'
-gem 'pry-rails'
+
 
 gem 'omniauth-facebook', '~> 5.0'
 gem 'omniauth-github'
@@ -53,6 +53,7 @@ gem 'activerecord-session_store'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-rails'
 end
 
 group :development do

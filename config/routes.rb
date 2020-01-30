@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :test_answers
   resources :tests
 
   root to: "job_posts#index"
@@ -14,7 +15,12 @@ Rails.application.routes.draw do
   devise_for :clients, path: 'clients', controllers: { sessions: "clients/sessions" }
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :exams
+  resources :job_posts do
+    resources :exams
+  end
+  resources :exams do
+    resources :exam_questions
+  end
   resources :exam_questions do
     resources :exam_options
   end

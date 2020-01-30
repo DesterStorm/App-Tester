@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_27_105210) do
+ActiveRecord::Schema.define(version: 2020_01_29_014724) do
 
   create_table "clients", force: :cascade do |t|
     t.integer "EIN"
@@ -40,15 +40,6 @@ ActiveRecord::Schema.define(version: 2020_01_27_105210) do
     t.index ["exam_question_id"], name: "index_exam_answers_on_exam_question_id"
   end
 
-  create_table "exam_options", force: :cascade do |t|
-    t.string "letter"
-    t.boolean "answer"
-    t.integer "exam_question_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["exam_question_id"], name: "index_exam_options_on_exam_question_id"
-  end
-
   create_table "exam_questions", force: :cascade do |t|
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
@@ -64,9 +55,6 @@ ActiveRecord::Schema.define(version: 2020_01_27_105210) do
 
   create_table "exams", force: :cascade do |t|
     t.string "name", default: "", null: false
-    t.string "exam_question", default: "", null: false
-    t.string "exam_option", default: "", null: false
-    t.string "exam_answer", default: "", null: false
     t.integer "job_post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -79,7 +67,6 @@ ActiveRecord::Schema.define(version: 2020_01_27_105210) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "exam_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -89,6 +76,15 @@ ActiveRecord::Schema.define(version: 2020_01_27_105210) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
+  end
+
+  create_table "test_answers", force: :cascade do |t|
+    t.integer "test_id", null: false
+    t.integer "exam_answer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exam_answer_id"], name: "index_test_answers_on_exam_answer_id"
+    t.index ["test_id"], name: "index_test_answers_on_test_id"
   end
 
   create_table "tests", force: :cascade do |t|
@@ -132,6 +128,8 @@ ActiveRecord::Schema.define(version: 2020_01_27_105210) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "test_answers", "exam_answers"
+  add_foreign_key "test_answers", "tests"
   add_foreign_key "tests", "exams"
   add_foreign_key "tests", "users"
 end
