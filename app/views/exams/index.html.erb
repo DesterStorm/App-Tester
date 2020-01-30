@@ -1,0 +1,21 @@
+<% content_for :page_name, "Index" %>
+
+<section class="section">
+  <div class="container">
+    <% @exams.each do |exam| %>
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="name is-4"><%= link_to exam.name, exam %></p>
+            </div>
+          </div>
+          <!--          <div class="content"><%#= exam.content %></div>-->
+          <!--          <div class="comment-count">-->
+          <!--            <span class="tag is-rounded"><%#= comment.count %></span>-->
+          <!--          </div>-->
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

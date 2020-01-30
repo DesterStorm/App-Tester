@@ -1,0 +1,56 @@
+<% content_for :page_name, @exam.job_post.id %>
+
+<section class="section">
+  <div class="container">
+    <nav class="level">
+
+      <!-- Left Side -->
+      <div class="level-left">
+        <h1 class="title">
+          <%= @exam.job_post.title %>
+        </h1>
+      </div>
+
+
+        <!-- Right Side -->
+        <div class="level-right">
+
+            <% if current_client %>
+            <p class="level-item">
+              <%= link_to "Edit", edit_exam_path(@exam), class: "button" %>
+            </p>
+            <p class="level-item">
+              <%= link_to "Delete", exam_path(@exam), method: :delete, data: {confirm: "Are you sure?"}, class: "button is-danger" %>
+            </p>
+          <% end %>
+      </div>
+    </nav>
+
+
+
+    <hr />
+  </div>
+
+  <div class="description">
+    <%= @exam.exam_questions.each do |q| %>
+      <div class="title">
+        <div class="media-content">
+          <%= q.description %>
+        </div>
+      </div>
+      <%= q.exam_answers.each do |a| %>
+        <div class="card">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <div class="answer">
+                  <%= a.letter %>. <%= a.answer %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</section>

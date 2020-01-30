@@ -1,0 +1,43 @@
+<div class="section">
+  <div class="level-left">
+    <h1 class="title">
+      <%= @job_post.title %><br/><br/>
+    </h1>
+  </div>
+  <%= simple_form_for @exam do |f| %>
+  <div class="field">
+    <div class="section">
+      <div class="field">
+        <div class="control">
+          <%= f.hidden_field :job_post_id %>
+          <%= f.simple_fields_for :exam_questions do |q| %>
+          <br/><br/>
+          <div class="field">
+            <div class="control">
+              <%= q.input :description, input_html: {class: 'textarea'}, wrapper: false, label_html: {class: 'label'}  %>
+              <br/><br/>
+              <%= q.simple_fields_for :exam_answers do |a| %>
+              <div class="field">
+                <div class="control">
+                  <fieldset>
+                    <%= a.hidden_field :letter %>
+                    <%= a.label :letter, a.object.letter %>
+<!--                    DO NO CHANGE THIS LINE -->
+                    <%= a.input :answer, input_html: {class: 'input'}, wrapper: false, label_html: {class: 'label'}  %>
+<!--                    ^^^^^^^^^^^^^^^^^^^^^^ -->
+                    <h3>If correct answer, check this box.</h3>
+                    <%= a.check_box :correct, input_html: {:class => 'checkbox' }  %><br/><br/>
+                  </fieldset>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+          <% end %>
+          <%= f.button :submit, class: "button is-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
