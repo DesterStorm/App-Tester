@@ -32,4 +32,4 @@ navigate past the alert message as the server is run dirrectly on localhost:3000
 start by hitting sign-up button on the main screen for companies, and the nav menu located in the top right corner for employees
 *Note You have to enter a proper email to be allowed to signup to the application *When signing into an existing account, if the wrong password is used, there will be a notice on the page saying so. *if you forgot your password, please click the forgot password link to retrieve it.
 
-The License for my app can be found at https://github.com/DesterStorm/sinatra-portfolio-project/blob/master/LICENSE.md
+The License for my app can be found at https://github.com/DesterStorm/App-Tester/blob/master/MIT-LICENSE
