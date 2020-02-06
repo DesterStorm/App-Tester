@@ -1,19 +1,42 @@
 <div class="section">
-  <%= simple_form_for @exam do |f| %>
+  <div class="level-left">
+    <h1 class="title">
+<!--      <%#= @exam.name %><br/><br/>-->
+    </h1>
+  </div>
+  <%= simple_form_for @test, url: exam_tests_path do |f| %>
     <div class="field">
-      <div class="control">
-        <%= f.input :name, input_html: {class: 'input'}, wrapper: false, label_html: {class: 'label'} %>
+      <div class="section">
+        <div class="field">
+          <div class="control">
+            <%= f.hidden_field :exam_id %>
+            <div class="description">
+              <%= f.simple_fields_for :test_answers do |t| %>
+                <%= t.hidden_field :exam_question_id %>
+                <div class="title">
+                  <div class="media-content">
+                    <%= t.object.exam_question.description %>
+                  </div>
+                </div>
+                <% t.object.exam_question.exam_answers.each do |exam_answer| %>
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-content">
+                          <div class="answer">
+                            <h1><%= t.radio_button :exam_answer_id, exam_answer.id %> | <%= exam_answer.letter %>.) <%= exam_answer.answer %></h1>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+              <%= f.button :submit, "Submit Test", class: "button is-primary" %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="field">
-      <div class="control">
-        <%= f.input :question, input_html: {class: 'textarea'}, wrapper: false, label_html: {class: 'label'} %>
-        <%= f.input :option, input_html: {class: 'input'}, wrapper: false, label_html: {class: 'label'} %>
-        <%= f.input :option, input_html: {class: 'input'}, wrapper: false, label_html: {class: 'label'} %>
-        <%= f.input :option, input_html: {class: 'input'}, wrapper: false, label_html: {class: 'label'} %>
-        <%= f.input :option, input_html: {class: 'input'}, wrapper: false, label_html: {class: 'label'} %>
-      </div>
-    </div>
-    <%= f.button :submit, class: "button is-primary" %>
   <% end %>
 </div>

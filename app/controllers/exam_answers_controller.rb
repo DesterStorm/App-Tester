@@ -8,16 +8,17 @@ class ExamAnswersController < ApplicationController
   def new
     @exam_answers = ExamAnswer.new
     @exam = Exam.find(params[:id])
+    @exam_answers.exam_id = @exam
   end
 
-  # def create
-  #   @exam_answers = ExamAnswer.new(exam_answer_params)
-  #   if @exam_answers.save!
-  #     redirect_to @exam_answers
-  #   else
-  #     render 'new'
-  #   end
-  # end
+  def create
+    @exam_answers = ExamAnswer.new(exam_answer_params)
+    if @exam_answers.save!
+      redirect_to @exam_answers
+    else
+      render 'new'
+    end
+  end
 
   def show
     @exam_answers = ExamAnswer.find(params[:id])

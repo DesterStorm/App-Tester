@@ -13,24 +13,32 @@
         <!-- Right Side -->
       <div class="level-right">
         <% if current_user %>
-          <%= link_to "Take Test", @job_post.exams.sample, class: "button" %>
+          <% if exam = @job_post.exams.first %>
+            <p class="button">
+              <%= link_to "Take Test", new_exam_test_path(@job_post.exams.first) %>
+            </p>
           <% end %>
-          <% if current_client %>
-        <p class="level-item">
-          <%= link_to "Create Test", :controller => "exams", :action => "new", :id => @job_post, class: "button" %>
-        </p>
-        <p class="level-item">
-          <%= link_to "Edit", edit_job_post_path(@job_post), class: "button" %>
-        </p>
-        <p class="level-item">
-          <%= link_to "Delete", job_post_path(@job_post), method: :delete, data: {confirm: "Are you sure?"}, class: "button is-danger" %>
-        </p>
+        <% end %>
+        <% if current_client %>
+          <p class="button">
+            <%= link_to "Create Test", :controller => "exams", :action => "new", :id => @job_post.id %>
+          </p>
+        <% end %>
+        <% if current_client %>
+          <p class="level-item">
+            <p class="level-item">
+              <%= link_to "Edit", edit_job_post_path(@job_post), class: "button" %>
+            </p>
+          </p>
+        <% end %>
+        <% if current_client %>
+          <p class="level-item">
+            <%= link_to "Delete", job_post_path(@job_post), method: :delete, data: {confirm: "Are you sure?"}, class: "button is-danger" %>
+          </p>
         <% end %>
       </div>
     </nav>
     <hr />
-
-
     <div class="content">
       <%= @job_post.content %>
     </div>

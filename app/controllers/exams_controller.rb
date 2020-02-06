@@ -9,7 +9,9 @@ class ExamsController < ApplicationController
   def new
     @exam = Exam.new
     @job_post = JobPost.find(params[:id])
-    10.times do
+    @exam.job_post_id = @job_post.id
+    @exam.name = @job_post.title
+    1.times do
       question = @exam.exam_questions.build
       letters = "A", "B", "C", "D"
       letters.each do |letter|
@@ -19,11 +21,7 @@ class ExamsController < ApplicationController
   end
 
   def create
-    @job_post = JobPost.find_by(params[:job_post_id])
-    @exam = @job_post.exams.build(exam_params)
-    @exam_answers = ExamAnswer.new
-    @exam_questions = ExamQuestion.new
-    # binding.pry
+    @exam = Exam.new(exam_params)
     if @exam.save!
       redirect_to @exam
     else

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_014724) do
+ActiveRecord::Schema.define(version: 2020_02_06_020258) do
 
   create_table "clients", force: :cascade do |t|
     t.integer "EIN"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2020_01_29_014724) do
     t.integer "exam_answer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "exam_question_id"
     t.index ["exam_answer_id"], name: "index_test_answers_on_exam_answer_id"
     t.index ["test_id"], name: "index_test_answers_on_test_id"
   end
@@ -92,6 +93,7 @@ ActiveRecord::Schema.define(version: 2020_01_29_014724) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "score"
     t.index ["exam_id"], name: "index_tests_on_exam_id"
     t.index ["user_id"], name: "index_tests_on_user_id"
   end

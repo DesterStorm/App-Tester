@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :test_answers
-  resources :tests
+
 
   root to: "job_posts#index"
 
@@ -24,5 +23,11 @@ Rails.application.routes.draw do
   resources :exam_questions do
     resources :exam_options
   end
+  resources :exams do
+    resources :tests, only: [:new, :create, :edit, :update, :destroy]
+  end
+
   resources :exam_answers
+  resources :test_answers
+  resources :tests
 end

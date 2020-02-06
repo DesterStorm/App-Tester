@@ -5,23 +5,17 @@ class User < ApplicationRecord
          :rememberable, :trackable, :validatable, :confirmable, :omniauthable,
          omniauth_providers: [:facebook, :google_oauth2]
 
-  #before_save :assign_client
-
   validates_confirmation_of :password
 
   def block_from_invitation?
     false
   end
 
-  #belongs_to :client
   has_many :tests
   has_many :exams, through: :tests
-  has_many :exam_answers, through: :exams
+  has_many :test_answers, through: :tests
   has_and_belongs_to_many :job_posts
 
-  #def assign_client
-  #  self.client = self.invited_by
-  #end
 
   before_validation :set_provider
   def set_provider
@@ -36,15 +30,6 @@ class User < ApplicationRecord
   def confirmed_at
     self.confirmed_at = Time.now
   end
-
-  #def block_from_invitation?
-  #  # If the user has not been confirmed yet, we let the usual controls work
-  #  if confirmed_at.blank?
-  #    return invited_to_sign_up?
-  #  else # if the user was confirmed, we let them in (will decide to accept or decline invitation from the dashboard)
-  #    return false
-  #  end
-  #end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
