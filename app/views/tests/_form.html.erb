@@ -24,7 +24,9 @@
                       <div class="media">
                         <div class="media-content">
                           <div class="answer">
-                            <h1><%= t.radio_button :exam_answer_id, exam_answer.id %> | <%= exam_answer.letter %>.) <%= exam_answer.answer %></h1>
+                            <div class="field_with_errors">
+                              <h1><%= t.radio_button :exam_answer_id, exam_answer.id %> | <%= exam_answer.letter %>.) <%= exam_answer.answer %></h1>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -32,6 +34,7 @@
                   </div>
                 <% end %>
               <% end %>
+              <br />
               <%= f.button :submit, "Submit Test", class: "button is-primary" %>
             </div>
           </div>

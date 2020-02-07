@@ -9,20 +9,12 @@
           <%#= @exam.name %>
         </h1>
       </div>
-
-
-        <!-- Right Side -->
-        <div class="level-right">
-        <p class="level-item">
-          <%= link_to "Delete", test_path(@test), method: :delete, data: {confirm: "Are you sure?"}, class: "button is-danger" %>
-        </p>
-      </div>
     </nav>
     <hr />
 
 
     <div class="question">
-      <%= @test.score %>
+      <h1><%= @test.score %></h1>
     </div>
   </div>
 </section>

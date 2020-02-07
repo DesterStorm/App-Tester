@@ -1,6 +1,7 @@
 require "pry"
 
 class ExamAnswersController < ApplicationController
+
   def index
     @exam_answers = ExamAnswer.all.order("created_at DESC")
   end

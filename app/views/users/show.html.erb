@@ -1,1 +1,43 @@
-<h1>SUHHHH DUDE</h1>
+<% content_for :page_name, @user %>
+
+<section class="section">
+  <div class="container">
+    <nav class="level">
+
+      <!-- Left Side -->
+      <div class="level-left">
+        <h1 class="title">
+          <%#= @user.exams.all %>
+          <%#= @user.tests.all %>
+        </h1>
+      </div>
+    </nav>
+    <hr />
+
+    <div class="description">
+      <% if current_user %>
+        <li>Welcome, <%= current_user.first_name + " " + current_user.last_name%>!</li>
+      <% end %>
+        <div class="title">
+          <div class="media-content">
+
+          </div>
+        </div>
+        <%#= q.exam_answers.each do |a| %>
+          <div class="card">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <div class="answer">
+                    <%= @user.tests.all %>
+                    <%= @user.exams.all %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%# end %>
+      <%# end %>
+    </div>
+  </div>
+</section>

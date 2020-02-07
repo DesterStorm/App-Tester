@@ -3,7 +3,7 @@ require 'pry'
 class ExamsController < ApplicationController
 
   def index
-    @exams = Exam.all.order("created_at DESC")
+    @exams = Exam.all.order('name ASC')
   end
 
   def new
@@ -21,6 +21,7 @@ class ExamsController < ApplicationController
   end
 
   def create
+    # binding.pry
     @exam = Exam.new(exam_params)
     if @exam.save!
       redirect_to @exam
@@ -56,6 +57,6 @@ class ExamsController < ApplicationController
   private
 
   def exam_params
-    params.require(:exam).permit(:job_post_id, exam_questions_attributes: [:description, exam_answers_attributes:[:letter, :answer, :correct]] )
+    params.require(:exam).permit(:name, :job_post_id, exam_questions_attributes: [:description, exam_answers_attributes:[:exam_question_ids, :letter, :answer, :correct]] )
   end
 end

@@ -13,15 +13,18 @@ class TestsController < ApplicationController
   end
 
   def create
-    @exam = Exam.find_by(params[:job_post => :job_post_id])
+    @exam = Exam.find(params[:exam_id])
     @exam.user_ids = current_user.id
-    @test = Test.find_by(params[:exam => :exam_id])
-    @exam.tests.create(test_params)
+    @test = Test.find_or_initialize_by(params[:exam => :exam_id])
+    @test.exam_id = @exam.id
+    @test.score = 0
+    # binding.pry
+    if @test.test_answers
+      @test.increment!(:score, 1)
+    else
+      @test.increment!(:score, -1)
+    end
     if @test.save
-      @test.score = 0
-      @exam.exam_questions.correct_answer.each do
-        @test.score += 1
-      end
       redirect_to @test
     else
       render 'new'

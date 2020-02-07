@@ -23,7 +23,7 @@ class JobPostsController < ApplicationController
 
   def update
     @job_post = JobPost.find(params[:id])
-
+    # binding.pry
     if @job_post.update(job_post_params)
       redirect_to @job_post
     else

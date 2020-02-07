@@ -17,7 +17,7 @@
 
             <% if current_client %>
             <p class="level-item">
-              <%= link_to "Edit", edit_exam_path(@exam), class: "button" %>
+              <%= link_to "Add Question To Exam", edit_exam_path(@exam), class: "button" %>
             </p>
             <p class="level-item">
               <%= link_to "Delete", exam_path(@exam), method: :delete, data: {confirm: "Are you sure?"}, class: "button is-danger" %>
@@ -32,13 +32,13 @@
   </div>
 
   <div class="description">
-    <%= @exam.exam_questions.each do |q| %>
+    <% @exam.exam_questions.each do |q| %>
       <div class="title">
         <div class="media-content">
           <%= q.description %>
         </div>
       </div>
-      <%= q.exam_answers.each do |a| %>
+      <% q.exam_answers.each do |a| %>
         <div class="card">
           <div class="card-content">
             <div class="media">
@@ -51,6 +51,7 @@
           </div>
         </div>
       <% end %>
+      <br />
     <% end %>
   </div>
 </section>

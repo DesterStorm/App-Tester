@@ -40,8 +40,6 @@ class ExamQuestionsController < ApplicationController
     redirect_to exam_questions_path, notice: "Successfully destroyed exam_question."
   end
 
-
-
   def exam_question_params
     params.permit(:exam_id, :description, exam_answers_attributes:[:letter, :answer, :correct])
   end

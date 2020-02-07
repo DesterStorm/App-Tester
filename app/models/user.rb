@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :tests
   has_many :exams, through: :tests
   has_many :test_answers, through: :tests
+  accepts_nested_attributes_for :test_answers
   has_and_belongs_to_many :job_posts
 
 
