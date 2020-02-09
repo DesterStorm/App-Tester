@@ -1,5 +1,6 @@
 class ExamQuestionsController < ApplicationController
   attr_accessor :description
+  before_action :set_exam_question, only: [:show, :edit, :update, :destroy]
 
   def new
     @exam_questions = ExamQuestion.new
@@ -18,11 +19,9 @@ class ExamQuestionsController < ApplicationController
   end
 
   def show
-    @exam_questions = ExamQuestion.find(params[:id])
   end
 
   def update
-    @exam_questions = ExamQuestion.find(params[:id])
     if @exam_questions.update_attributes(exam_question_params)
       redirect_to @exam_questions, notice: "Successfully updated exam_questions."
     else
@@ -31,13 +30,15 @@ class ExamQuestionsController < ApplicationController
   end
 
   def edit
-    @exam_questions = ExamQuestion.find(params[:id])
   end
 
   def destroy
-    @exam_questions = ExamQuestion.find(params[:id])
     @exam_questions.destroy
     redirect_to exam_questions_path, notice: "Successfully destroyed exam_question."
+  end
+
+  def set_exam_question
+    @exam_questions = ExamQuestion.find(params[:id])
   end
 
   def exam_question_params

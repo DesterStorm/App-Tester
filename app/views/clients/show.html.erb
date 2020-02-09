@@ -1,0 +1,43 @@
+<% content_for :page_name, @client %>
+
+<section class="section">
+  <div class="container">
+    <nav class="level">
+
+      <!-- Left Side -->
+      <div class="level-left">
+        <h1 class="title">
+          <%#= @client.exams.all %>
+          <%#= @client.tests.all %>
+        </h1>
+      </div>
+    </nav>
+    <hr />
+
+    <div class="description">
+      <% if current_client %>
+        <li>Welcome, <%= current_client.company_name %>!</li>
+      <% end %>
+        <div class="title">
+          <div class="media-content">
+
+          </div>
+        </div>
+        <%#= q.exam_answers.each do |a| %>
+          <div class="card">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <div class="answer">
+                    <%= @client.job_posts.all %>
+                    <%= @client.exams.all %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%# end %>
+      <%# end %>
+    </div>
+  </div>
+</section>

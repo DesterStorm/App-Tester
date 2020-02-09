@@ -43,8 +43,4 @@ class ExamAnswersController < ApplicationController
     @exam_answers.destroy
     redirect_to exam_answers_path, notice: "Successfully destroyed exam_answer."
   end
-
-  def exam_answer_params
-    params.require(:exam_answer).permit(:exam_question_id, :exam_id, :letter, :correct, :answer)
-  end
 end

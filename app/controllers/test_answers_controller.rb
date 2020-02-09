@@ -1,5 +1,4 @@
 class TestAnswersController < TestsController
-
   # def create
   #   @test_answer = TestAnswer.new(test_answer_params)
   #   @test_answer.test_id = @test.id
@@ -18,7 +17,4 @@ class TestAnswersController < TestsController
   #   TestAnswer.where(letter: nil).delete_all
   # end
   #
-  # def test_answer_params
-  #   params.permit(:exam_answer_id, :test_id)
-  # end
 end

@@ -11,18 +11,16 @@
         </h1>
       </div>
 
-
-        <!-- Right Side -->
-        <div class="level-right">
-
-            <% if current_client %>
-            <p class="level-item">
-              <%= link_to "Add Question To Exam", edit_exam_path(@exam), class: "button" %>
-            </p>
-            <p class="level-item">
-              <%= link_to "Delete", exam_path(@exam), method: :delete, data: {confirm: "Are you sure?"}, class: "button is-danger" %>
-            </p>
-          <% end %>
+      <!-- Right Side -->
+      <div class="level-right">
+        <% if current_client %>
+          <p class="level-item">
+            <%= link_to "Add Question", edit_exam_path(@exam), exam_question: @exam.exam_questions.build, class: "button" %>
+          </p>
+          <p class="level-item">
+            <%= link_to "Delete", exam_path(@exam), method: :delete, data: {confirm: "Are you sure?"}, class: "button is-danger" %>
+          </p>
+        <% end %>
       </div>
     </nav>
 

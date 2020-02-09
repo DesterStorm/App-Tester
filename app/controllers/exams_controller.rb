@@ -1,6 +1,7 @@
 require 'pry'
 
 class ExamsController < ApplicationController
+  before_action :set_exam, only: [:show, :edit, :update, :destroy]
 
   def index
     @exams = Exam.all.order('name ASC')
@@ -21,7 +22,6 @@ class ExamsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @exam = Exam.new(exam_params)
     if @exam.save!
       redirect_to @exam
@@ -45,13 +45,16 @@ class ExamsController < ApplicationController
   end
 
   def edit
-    @exam = Exam.find(params[:id])
   end
 
   def destroy
     @exam = Exam.find(params[:id])
     @exam.destroy
     redirect_to exams_path, notice: "Successfully destroyed exam."
+  end
+
+  def set_exam
+    @exam = Exam.find(params[:id])
   end
 
   private

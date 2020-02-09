@@ -32,21 +32,29 @@
 <!--                  TODO: Add About Us page-->
                   <%#= link_to 'About Us', about_us_path, class: "navbar-item" %>
 <!--                </a>-->
-                <a class="navbar-item">
-                  <%= link_to "Edit Account Info", edit_user_registration_path, class: "navbar-item" %>
-                </a>
-                <% if current_user  %>
+                <% if current_user %>
+                  <a class="navbar-item">
+                    <%= link_to "Edit Account Info", edit_user_registration_path, class: "navbar-item" %>
+                  </a>
                   <a class="navbar-item">
                     <%= link_to 'Profile Page', "users/:id", class: "navbar-item" %>
                   </a>
-                <a class="navbar-item">
-                      <%= link_to 'Employee Sign out', destroy_user_session_path, method: :delete, class: "navbar-item" %>
-                  <% else %>
-                    <a class="navbar-item">
-                      <%= link_to 'Employee Sign in', new_user_session_path, class: "navbar-item" %>
-                    </a>
-                    <a class="navbar-item">
-                        <%= link_to 'Employee Sign Up', new_user_registration_path, class: "navbar-item" %><% end %>
+                  <a class="navbar-item">
+                    <%= link_to 'Employee Sign out', destroy_user_session_path, method: :delete, class: "navbar-item" %>
+                <% elsif current_client %>
+                  <a class="navbar-item">
+                    <%= link_to "Edit Account Info", edit_client_registration_path, class: "navbar-item" %>
+                  </a>
+                  <a class="navbar-item">
+                    <%= link_to 'Profile Page', "clients/:id", class: "navbar-item" %>
+                  </a>
+                <% else %>
+                  <a class="navbar-item">
+                    <%= link_to 'Employee Sign in', new_user_session_path, class: "navbar-item" %>
+                  </a>
+                  <a class="navbar-item">
+                    <%= link_to 'Employee Sign Up', new_user_registration_path, class: "navbar-item" %>
+                <% end %>
                   </a>
                 </a>
               </div>

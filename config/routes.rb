@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks', sessions: "users/sessions", invitations: 'users/invitations' }
   devise_for :clients, path: 'clients', controllers: { sessions: "clients/sessions" }
   get 'users/:id' => 'users#show'
+  get 'clients/:id' => 'clients#show'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :job_posts do

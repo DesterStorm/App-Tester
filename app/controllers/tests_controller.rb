@@ -18,11 +18,8 @@ class TestsController < ApplicationController
     @test = Test.find_or_initialize_by(params[:exam => :exam_id])
     @test.exam_id = @exam.id
     @test.score = 0
-    # binding.pry
-    if @test.test_answers
-      @test.increment!(:score, 1)
-    else
-      @test.increment!(:score, -1)
+    if @test.test_answers == @exam.exam_questions.correct_answer
+      @test.increment!(:score, 10)
     end
     if @test.save
       redirect_to @test
@@ -43,10 +40,6 @@ class TestsController < ApplicationController
     else
       render 'edit'
     end
-  end
-
-  def edit
-    @test = Test.find(params[:id])
   end
 
   def destroy
