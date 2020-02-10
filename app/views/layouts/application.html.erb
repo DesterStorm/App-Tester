@@ -15,7 +15,7 @@
         <nav class="navbar">
           <div class="container">
             <div class="navbar-brand">
-              <%= link_to 'App-Tester Home', root_path, class: "navbar-item" %>
+
               <span class="navbar-burger burger" data-target="navMenu">
               <span></span>
               <span></span>
@@ -92,7 +92,7 @@
             <ul>
               <li>
 <!--              <%#= link_to 'App-Tester Home', root_path, class: "navbar-item" %></a></li>-->
-
+                <%= link_to 'Home', root_path, class: "navbar-item" %>
               <% if current_client  %>
               <li><%= link_to "Create Job Post", new_job_post_path, class: "navbar-item" %></li>
               <li><%= link_to "Built Tests", exams_path %></li>
