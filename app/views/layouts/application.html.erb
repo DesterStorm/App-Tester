@@ -32,7 +32,7 @@
 <!--                  TODO: Add About Us page-->
                   <%#= link_to 'About Us', about_us_path, class: "navbar-item" %>
 <!--                </a>-->
-                <% if current_user %>
+                <% if current_user.class == User %>
                   <a class="navbar-item">
                     <%= link_to "Edit Account Info", edit_user_registration_path, class: "navbar-item" %>
                   </a>
@@ -48,12 +48,14 @@
                   <a class="navbar-item">
                     <%= link_to 'Profile Page', "clients/:id", class: "navbar-item" %>
                   </a>
-                <% else %>
+                <% elsif unless current_user || current_client %>
                   <a class="navbar-item">
                     <%= link_to 'Employee Sign in', new_user_session_path, class: "navbar-item" %>
                   </a>
                   <a class="navbar-item">
                     <%= link_to 'Employee Sign Up', new_user_registration_path, class: "navbar-item" %>
+                <% end %>
+                <% else %>
                 <% end %>
                   </a>
                 </a>
@@ -78,7 +80,7 @@
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title">
-            Applicant Tester
+            App Tester
           </h1>
         </div>
       </div>
@@ -88,31 +90,27 @@
         <nav class="tabs is-boxed is-fullwidth">
           <div class="container">
             <ul>
-              <li><%= link_to 'App-Tester Home', root_path, class: "navbar-item" %></a></li>
+              <li>
+<!--              <%#= link_to 'App-Tester Home', root_path, class: "navbar-item" %></a></li>-->
+
               <% if current_client  %>
               <li><%= link_to "Create Job Post", new_job_post_path, class: "navbar-item" %></li>
               <li><%= link_to "Built Tests", exams_path %></li>
               <% end %>
               <li></li>
-              <li><% if current_client  %>
-                    <%= link_to 'Sign out', destroy_client_session_path, method: :delete %>
-                  <% else %>
-                    <%= link_to 'Company Sign in', new_client_session_path %>
+              <li>
+                <% if current_client  %>
+                  <%= link_to 'Sign out', destroy_client_session_path, method: :delete %>
+                <% elsif current_user.class == User %>
+
+                <% else %>
+                  <%= link_to 'Company Sign in', new_client_session_path %>
               </li>
                 <li>
-                  <%= link_to 'Company Registration', new_client_registration_path %><% end %>
+                  <%= link_to 'Company Registration', new_client_registration_path %>
+                  <% end %>
                 </li>
 
-
-<!--              <li>-->
-                <%# if current_user %>
-                  <%#= link_to 'Sign out applicant', destroy_user_session_path, method: :delete %>
-                <%# else %>
-                  <%#= link_to 'Sign in applicant', new_user_session_path %>
-<!--              </li>-->
-<!--              <li>-->
-                <%#= link_to 'Sign Up applicant', new_user_registration_path %><%# end %>
-<!--              </li>-->
             </ul>
           </div>
         </nav>

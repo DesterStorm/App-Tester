@@ -310,7 +310,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   config.omniauth :facebook,ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'], scope: 'user, public_email', info: 'email, first_name, last_name, image'
 
-  config.omniauth :google_oauth2,ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'userinfo.email, userinfo.profile'
+  config.omniauth :google_oauth2,ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], skip_jwt: true, scope: 'userinfo.email, userinfo.profile'
 
 
   # ==> Warden configuration
